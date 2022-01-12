@@ -5,7 +5,7 @@
 /* set space of hamburger_menu button */
 .menu_Bt {
     display: flex;
-    left: 95%;
+    right: 0%;
     height: 50px;
     width: 50px;
     justify-content: center;
