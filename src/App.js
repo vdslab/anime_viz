@@ -60,14 +60,12 @@ function App() {
     );
   });
 
-  console.log(color)
-
+  console.log(color);
   const tu = ["20210802", "20211213", "20211214", "20211222", "20211226", "20210128", "20210208","20210222","20211011","20211011","20211017", "20211231", "20210501"];
   console.log(tu);
   const time = tu.map((item) => {
     return new Date(+item.substring(0, 4), +item.substring(4, 6)-1, +item.substring(6, 8));
   });
-
   console.log(time);
   time.sort((a, b) => {
     return (a > b ? 1 : -1);
@@ -75,10 +73,11 @@ function App() {
 
   console.log(time);
 
-  const timeDomain = [0];
-
+  const timeDomain = [];
+  const beginTime = new Date(2021, 5-1, 1);
+  const endTime = new Date(2021, 12-1, 31);
   for(let i = 4; i < time.length; i++) {
-    timeDomain.push(difference(time[3], time[i]));
+    timeDomain.push(difference(beginTime, time[i]));
   }
 
   console.log("####");
@@ -89,7 +88,7 @@ function App() {
   const svgWidth = margin.left + margin.right + contentWidth;
   const svgHeight = margin.top + margin.bottom + contentHeight;
   const scale = d3.scaleBand().range([0, contentWidth/ 1.5]).domain(d3.range(heatData.length));
-  const campaignScale = d3.scaleLinear().domain([Math.min(...timeDomain), Math.max(...timeDomain)]).range([150, 550]);
+  const campaignScale = d3.scaleLinear().domain([0, difference(beginTime, endTime)]).range([150, 550]);
   //let idx = 0;
     return (
       <div>
@@ -129,18 +128,21 @@ function App() {
             </section>
           </nav>
         </div>
+
+
+
         <svg
         viewBox={`${-margin.left} ${-margin.top} ${svgWidth} ${svgHeight}`}
         style={{ border: "solid 1px" }}
       >
 
         <g>
-          <text x = {156} y = {0} fontSize={8}>5月</text>
-          <text x = {185} y = {0} fontSize={8}>6月</text>
-          <text x = {210} y = {0} fontSize={8}>7月</text>
-          <text x = {235} y = {0} fontSize={8}>8月</text>
-          <text x = {260} y = {0} fontSize={8}>9月</text>
-          <text x = {285} y = {0} fontSize={8}>10月</text>
+          <text x = {170} y = {0} fontSize={8}>5月</text>
+          <text x = {220} y = {0} fontSize={8}>6月</text>
+          <text x = {270} y = {0} fontSize={8}>7月</text>
+          <text x = {320} y = {0} fontSize={8}>8月</text>
+          <text x = {370} y = {0} fontSize={8}>9月</text>
+          <text x = {420} y = {0} fontSize={8}>10月</text>
         </g>
           <g>
             {heatData.map((array, i)=> {
@@ -155,7 +157,7 @@ function App() {
                   <g>
                     <text 
                     x = {scale(0) - margin.left + 10 }
-                    y = {50*i + 30}
+                    y = {40*i + 30}
                     font-size="10"
                     >{data[i]['title']}</text>
 
