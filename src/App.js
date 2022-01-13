@@ -99,13 +99,35 @@ function App() {
             <span></span>
           </label>
           
-          <div className={classes.contents}>
-            <ul>
-              <li>
-                <a href="">link1</a>
-              </li>
-            </ul>
-          </div>
+          <nav className={classes.contents}>
+            <section className="section">
+              <div className="content">
+                <h1 className="title is-3" >
+                  詳細絞り込み
+                </h1>
+              </div>
+              <div className="content">
+                <input type="checkbox" id="check"></input>
+                <label for="check">キャンペーン1</label>
+              </div>
+              <div className="content">
+                <input type="checkbox" id="check2"></input>
+                <label for="check2">キャンペーン2</label>
+              </div>
+              <div className="content">
+                <input type="checkbox" id="check3"></input>
+                <label for="check3">キャンペーン3</label>
+              </div>
+              <div className="content">
+                <input type="checkbox" id="check4"></input>
+                <label for="check4">キャンペーン4</label>
+              </div>
+              <div className="content">
+                <input type="checkbox" id="check5"></input>
+                <label for="check5">キャンペーン5</label>
+              </div>
+            </section>
+          </nav>
         </div>
         <svg
         viewBox={`${-margin.left} ${-margin.top} ${svgWidth} ${svgHeight}`}
