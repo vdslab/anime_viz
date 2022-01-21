@@ -5,7 +5,26 @@ import classes from "./style.module.css";
 function App() {
   const [data, setData] = useState([]);
   const [heatData, setHeatData] = useState([]);
-  const [menu, setMenu] = useState([]);
+  const [detailDate, setDetailDate] = useState([]);
+  const [detailText, setDetailText] = useState([]);
+
+  function handleChangeDate(e){
+    setDetailDate(e);
+  }
+  function handleChangeText(e){
+    setDetailText(e);
+  }
+
+  const checkJudged = { checkB1: true, checkB2: true, checkB3: true, checkB4: true, checkB5: true}
+
+  const [checkJudge, setCheckJudge] = useState(checkJudged);
+
+  const handleChangeCheck = e =>{
+    const newCheck = Object.assign({}, checkJudge, {
+      [e.target.value]: !checkJudge[e.target.value]
+    });
+    setCheckJudge(newCheck);
+  }
 
   const margin = {
     top: 10,
@@ -91,6 +110,7 @@ function App() {
   const campaignScale = d3.scaleLinear().domain([0, difference(beginTime, endTime)]).range([150, 550]);
   //let idx = 0;
     return (
+      
       <div>
         <div className="hamburger">
           <input type="checkbox" id={classes.hamburger_check} className={classes.hamburger_hidden}></input>
@@ -106,94 +126,109 @@ function App() {
                 </h1>
               </div>
               <div className="content">
-                <input type="checkbox" id="check"></input>
+                <input type="checkbox" id="check" value="checkB1" onChange={handleChangeCheck} checked={checkJudge["checkB1"]}></input>
                 <label for="check">キャンペーン1</label>
               </div>
               <div className="content">
-                <input type="checkbox" id="check2"></input>
+                <input type="checkbox" id="check2" value="checkB2" onChange={handleChangeCheck} checked={checkJudge["checkB2"]}></input>
                 <label for="check2">キャンペーン2</label>
               </div>
               <div className="content">
-                <input type="checkbox" id="check3"></input>
+                <input type="checkbox" id="check3" value="checkB3" onChange={handleChangeCheck} checked={checkJudge["checkB3"]}></input>
                 <label for="check3">キャンペーン3</label>
               </div>
               <div className="content">
-                <input type="checkbox" id="check4"></input>
+                <input type="checkbox" id="check4" value="checkB4" onChange={handleChangeCheck} checked={checkJudge["checkB4"]}></input>
                 <label for="check4">キャンペーン4</label>
               </div>
               <div className="content">
-                <input type="checkbox" id="check5"></input>
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
                 <label for="check5">キャンペーン5</label>
+              </div>
+
+              <div className="content">
+                <h1 className="title is-3">
+                  詳細
+                </h1>
+                <div className="content">
+                  <p className="content">日付：{detailDate}</p>
+                  <p className="content">キャンペーン内容：{detailText}</p>
+                </div>
               </div>
             </section>
           </nav>
         </div>
 
 
+        <div className={classes.graphs}>
+          <svg
+          viewBox={`${-margin.left} ${-margin.top} ${svgWidth} ${svgHeight}`}
+          style={{ border: "solid 1px" }}
+        >
 
-        <svg
-        viewBox={`${-margin.left} ${-margin.top} ${svgWidth} ${svgHeight}`}
-        style={{ border: "solid 1px" }}
-      >
-
-        <g>
-          <text x = {170} y = {0} fontSize={8}>5月</text>
-          <text x = {220} y = {0} fontSize={8}>6月</text>
-          <text x = {270} y = {0} fontSize={8}>7月</text>
-          <text x = {320} y = {0} fontSize={8}>8月</text>
-          <text x = {370} y = {0} fontSize={8}>9月</text>
-          <text x = {420} y = {0} fontSize={8}>10月</text>
-        </g>
           <g>
-            {heatData.map((array, i)=> {
-              console.log(array)
-              //console.log(color)
-              return(
-              array.map((item, j) => {
-                //console.log(color[i](item))
-                //console.log(scale(j))
-                //console.log(idx++);
+            <text x = {170} y = {0} fontSize={8}>5月</text>
+            <text x = {220} y = {0} fontSize={8}>6月</text>
+            <text x = {270} y = {0} fontSize={8}>7月</text>
+            <text x = {320} y = {0} fontSize={8}>8月</text>
+            <text x = {370} y = {0} fontSize={8}>9月</text>
+            <text x = {420} y = {0} fontSize={8}>10月</text>
+          </g>
+            <g>
+              {heatData.map((array, i)=> {
+                console.log(array)
+                //console.log(color)
                 return(
-                  <g>
-                    <text 
-                    x = {scale(0) - margin.left + 10 }
-                    y = {40*i + 30}
-                    font-size="10"
-                    >{data[i]['title']}</text>
+                array.map((item, j) => {
+                  //console.log(color[i](item))
+                  //console.log(scale(j))
+                  //console.log(idx++);
+                  return(
+                    <g>
+                      <text 
+                      x = {scale(0) - margin.left + 10 }
+                      y = {40*i + 30}
+                      font-size="10"
+                      >{data[i]['title']}</text>
 
-                <rect 
-                  x = {50*j + 150}
-                  y = {40*i + 10}
-                  width={50}
-                  height={31}
-                  fill={color[i](item)}
-                />
-                </g>
-                
+                  <rect 
+                    x = {50*j + 150}
+                    y = {40*i + 10}
+                    width={50}
+                    height={31}
+                    fill={color[i](item)}
+                  />
+                  </g>
+                  
+                  );
+                }) 
                 );
-              }) 
-              );
-            })
-          
+              })
+            
 
-          }
-          </g>
+            }
+            </g>
 
-          <g>
-            {timeDomain.map((item, idx) => {
+            <g>
+              {timeDomain.map((item, idx) => {
 
-              console.log(item);
-              return(
-                <circle
-                cx = {campaignScale(item)}
-                cy = {25}
-                r = "3"
-                />
-              );
-            })}
-          </g>
-     
-        </svg>
+                console.log(item);
+                return(
+                  <circle
+                  cx = {campaignScale(item)}
+                  cy = {25}
+                  r = "3"
+                  onClick={() => {
+                    handleChangeDate(tu[idx]);
+                    handleChangeText(data[0]['campaign'][idx]['abstract']);
+                  }}
+                  />
+                );
+              })}
+            </g>
+            
+          </svg>
+        </div>
       </div>
     );
   }
