@@ -5,6 +5,7 @@ import classes from "./style.module.css";
 function App() {
   const [data, setData] = useState([]);
   const [heatData, setHeatData] = useState([]);
+  const [campaignData, setCampaignData] = useState([]);
   const [menu, setMenu] = useState([]);
 
   const margin = {
@@ -22,34 +23,40 @@ function App() {
     const day = 1000*60*60*24;
     return(date2utc - date1utc)/day;
   }
+
+  const invertTimeType = (date) => {
+    return new Date(+date.substring(0, 4), +date.substring(4, 6)-1, +date.substring(6, 8));
+  }
   
   useEffect(() => {
     (async () => {
       const request = await fetch("sample.json");
-      const d = await request.json();
-      setData(d);
-
-  
+      const data = await request.json();
+      setData(data);
 
       const tmpHeat = [];
-      d.map((item) => {
+      const tmpCampaign = [];
+      data.map((item) => {
         const tmp = [];
         for(let idx = 0; idx < item['follower'].length-1;idx++) {
           tmp.push(1.0*item['follower'][idx+1]['number'] - item['follower'][idx]['number']);
         }
-
         tmpHeat.push(tmp);
+
+        tmpCampaign.push(item.campaign.map((c => c)));
       })
 
-      console.log(tmpHeat);
-    
-      
       setHeatData(tmpHeat);
+      setCampaignData(tmpCampaign);
+
+
+      
     })();
   }, []);
 
   console.log(data);
   console.log(heatData);
+  console.log(campaignData);
 
   
   const color = []
@@ -61,7 +68,7 @@ function App() {
   });
 
   console.log(color);
-  const tu = ["20210802", "20211213", "20211214", "20211222", "20211226", "20210128", "20210208","20210222","20211011","20211011","20211017", "20211231", "20210501"];
+  const tu = ["20210802", "20211213", "20211214", "20211222", "20211226", "20210128", "20210208","20210222","20211011","20211011","20211017"];
   console.log(tu);
   const time = tu.map((item) => {
     return new Date(+item.substring(0, 4), +item.substring(4, 6)-1, +item.substring(6, 8));
@@ -76,12 +83,23 @@ function App() {
   const timeDomain = [];
   const beginTime = new Date(2021, 5-1, 1);
   const endTime = new Date(2021, 12-1, 31);
-  for(let i = 4; i < time.length; i++) {
-    timeDomain.push(difference(beginTime, time[i]));
+  for(let i = 0; i < time.length; i++) {
+    timeDomain.push(difference(beginTime, time[i]) <= 0 || difference(beginTime, time[i]));
+    console.log(difference(beginTime, time[i]));
   }
 
-  console.log("####");
-  console.log(timeDomain);
+  const campaignData_copy = [...campaignData];
+  console.log(campaignData_copy);
+
+  campaignData_copy.map((item1, i) => {
+    item1.map((item2, j) => {
+      item2.data = difference(beginTime,invertTimeType(item2.data)); 
+    })
+  })
+
+  console.log(campaignData_copy);
+  //setCampaignData(campaignData_copy);
+  console.log(campaignData);
 
 
   //const color = d3.scaleLinear().range(['white', 'red']).domain([Math.min(...heatData), Math.max(...heatData)])
@@ -187,11 +205,31 @@ function App() {
                 <circle
                 cx = {campaignScale(item)}
                 cy = {25}
-                r = "3"
+                r = "5"
                 />
               );
             })}
           </g>
+
+          <g>
+            {campaignData_copy.map((item1, idx) => {
+              return(
+                item1.map((item2, jdx) => {
+                  console.log(item2.data);
+                  console.log(item2.abstract)
+                  return(
+                    <circle 
+                    cx = {campaignScale(item2.data)}
+                    cy = {25 + 31 * idx}
+                    r = '6'/>
+                  );
+                })
+              );
+            })}
+          </g>
+
+
+          
      
         </svg>
       </div>
