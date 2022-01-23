@@ -48,6 +48,7 @@ function App() {
     return new Date(+date.substring(0, 4), +date.substring(4, 6)-1, +date.substring(6, 8));
   }
   
+  
   useEffect(() => {
     (async () => {
       const request = await fetch("sample.json");
@@ -204,11 +205,7 @@ function App() {
                   //console.log(idx++);
                   return(
                     <g>
-                      <text 
-                      x = {scale(0) - margin.left + 10 }
-                      y = {40*i + 30}
-                      font-size="10"
-                      >{data[i]['title']}</text>
+                    
 
                   <rect 
                     x = {50*j + 150}
@@ -248,23 +245,35 @@ function App() {
 
           <g>
             {campaignData_copy.map((item1, idx) => {
+              
               return(
                 item1.map((item2, jdx) => {
                   console.log(item2.data);
-                  console.log(item2.abstract)
-                  return(
+                  console.log(item2.abstract);
+                  return item2.data > 550 || 
                     <circle 
                     cx = {campaignScale(item2.data)}
-                    cy = {25 + 31 * idx}
+                    cy = {25 + 40 * idx}
                     r = '6'/>
-                  );
+                  ;
                 })
               );
             })}
           </g>
 
 
-          
+          <g>
+              {data.map((item, i) => {
+                return(
+              <text 
+              x = {scale(0) - margin.left + 10 }
+              y = {40*i + 30}
+              font-size="10"
+              >{data[i]['title']}
+              </text>
+                );
+              })}
+            </g>
      
         </svg>
       
