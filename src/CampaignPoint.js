@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import { useState } from 'react';
 
-const CampaignPoint = ({campaignData, campaignScale, setDetailText, setDetailDate, checkJudge}) => {
+const CampaignPoint = ({campaignData, campaignScale, setDetail, checkJudge}) => {
 
   const beginTime = new Date(2021, 5-1, 1);
     return(
@@ -22,8 +22,7 @@ const CampaignPoint = ({campaignData, campaignScale, setDetailText, setDetailDat
                     cx = {campaignScale(item2.data)}
                     cy = {25 + 40 * idx}
                     r = '7'
-                    onClick={() => {setDetailText(item2.abstract),
-                    setDetailDate(dt.getFullYear())}}
+                    onClick={() => {setDetail({"date":dt.getMonth(), "name":item2.name, "group":item2.group, "abstract": item2.abstract})}}
                     />
                   );
 

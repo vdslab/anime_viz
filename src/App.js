@@ -11,13 +11,12 @@ function App() {
   const [heatData, setHeatData] = useState([]);
   const [campaignData, setCampaignData] = useState([]);
   const [menu, setMenu] = useState([]);
-  const [detailDate, setDetailDate] = useState("");
-  const [detailText, setDetailText] = useState("");
-
+  const [detail, setDetail] = useState([{"date":null,"group":null, "name":null,"abstract":null}]);
+  
   const toolref = useRef(null)
 
   const showTooltip = (event) => {
-    console.log("3333");
+    //console.log("3333");
     console.log(toolref.current.style.left);
 
     toolref.current.style.left = event.pageX + 10 + 'px';
@@ -25,19 +24,13 @@ function App() {
     toolref.current.style.display = 'block'; 
     toolref.current.innerHTML = "ti";
     console.log(toolref.current.style.left);
-    //toolref.style.left = event.pageY + 10 + 'px';
   }
 
   const hideTooltip = (event) => {
     toolref.current.style.display = "none";
   }
 
-  function handleChangeDate(e){
-    setDetailDate(e);
-  }
-  function handleChangeText(e){
-    setDetailText(e);
-  }
+
 
   const checkJudged = {
   "放送開始":true, 
@@ -61,13 +54,13 @@ function App() {
   const [checkJudge, setCheckJudge] = useState(checkJudged);
 
   const handleChangeCheck = e =>{
-    console.log("####")
+   
     const newCheck = Object.assign({}, checkJudge, {
       [e.target.value]: !checkJudge[e.target.value]
     });
-    console.log(newCheck)
+    
     setCheckJudge(newCheck);
-    console.log(checkJudged);
+  
   }
 
 
@@ -100,7 +93,6 @@ function App() {
       const request = await fetch("anime_data.json");
       const data = await request.json();
       setData(data);
-
       const tmpHeat = [];
       const tmpCampaign = [];
       data.map((item) => {
@@ -112,10 +104,7 @@ function App() {
 
         tmpCampaign.push(item.campaign.map((c => c)));
       })
-
       setHeatData(tmpHeat);
-
-
       tmpCampaign.map((item1, i) => {
         item1.map((item2, j) => {
           item2.data = difference(beginTime,invertTimeType(item2.data)); 
@@ -180,7 +169,9 @@ function App() {
           
           <nav className={classes.contents} style={{overflowY:'scroll'}}>
             <section className="section" >
+
               <div className="content">
+
                 <h1 className="title is-3" >
                   詳細絞り込み
                 </h1>
@@ -190,7 +181,7 @@ function App() {
 
               {Object.keys(checkJudged).map((item, idx) => {
                   return(
-                    <div className="content">
+                  <div className="content">
                     <input type="checkbox" id="check" value={item} onChange={handleChangeCheck} checked={checkJudge[item]}></input>
                     <label for="check">{item}</label>
                   </div>  
@@ -202,14 +193,16 @@ function App() {
                 <h1 className="title is-3">
                   詳細
                 </h1>
+
                 <div className="content">
-                  <p className="content">日付：{detailDate}</p>
-                  <p className="content">キャンペーン内容：{detailText}</p>
+                  <p className="content">日付：{detail["date"]}</p>
+                  <p className="content">分類：{detail["group"]}</p>
+                  <p className="content">キャンペーン名：{detail["name"]}</p>
+                  <p className="content">キャンペーン内容：{detail["abstract"]}</p>
                 </div>
               </div>
 
               
-
             </section>
           </nav>
 
@@ -217,9 +210,6 @@ function App() {
 
 
         <div className={classes.graphs} >
-
-
-
           <svg
           viewBox={`${-margin.left} ${-margin.top} ${svgWidth} ${svgHeight}`}
           style={{ border: "solid 1px" }}
@@ -261,7 +251,7 @@ function App() {
             })}
           </g> */}
 
-          <CampaignPoint campaignData = {campaignData} campaignScale = {campaignScale} setDetailText = {setDetailText} setDetailDate = {setDetailDate} checkJudge = {checkJudge}/>
+          <CampaignPoint campaignData = {campaignData} campaignScale = {campaignScale} setDetail= {setDetail} checkJudge = {checkJudge}/>
 
 
           <g>
