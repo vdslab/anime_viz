@@ -11,9 +11,9 @@ function App() {
   const [heatData, setHeatData] = useState([]);
   const [campaignData, setCampaignData] = useState([]);
   const [menu, setMenu] = useState([]);
-  const [detailDate, setDetailDate] = useState([]);
-  const [detailText, setDetailText] = useState([]);
-  const [showTip, setShowTip] = useState(false);
+  const [detailDate, setDetailDate] = useState("");
+  const [detailText, setDetailText] = useState("");
+
   const toolref = useRef(null)
 
   const showTooltip = (event) => {
@@ -50,6 +50,7 @@ function App() {
     setCheckJudge(newCheck);
   }
 
+
   const margin = {
     top: 10,
     bottom: 50,
@@ -58,6 +59,8 @@ function App() {
   };
   const contentWidth = 600;
   const contentHeight = 700;
+  const beginTime = new Date(2021, 5-1, 1);
+  const endTime = new Date(2021, 12-1, 31);
 
   const difference = (date1, date2) => {
     const date1utc = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate());
@@ -67,13 +70,13 @@ function App() {
   }
 
   const invertTimeType = (date) => {
-    return new Date(+date.substring(0, 4), +date.substring(4, 6)-1, +date.substring(6, 8));
+    return new Date(date.substring(0, 4), date.substring(4, 6)-1, +date.substring(6, 8));
   }
   
   
   useEffect(() => {
     (async () => {
-      const request = await fetch("sample.json");
+      const request = await fetch("anime_data.json");
       const data = await request.json();
       setData(data);
 
@@ -90,8 +93,15 @@ function App() {
       })
 
       setHeatData(tmpHeat);
-      setCampaignData(tmpCampaign);
 
+
+      tmpCampaign.map((item1, i) => {
+        item1.map((item2, j) => {
+          item2.data = difference(beginTime,invertTimeType(item2.data)); 
+        })
+      });
+
+      setCampaignData(tmpCampaign)
 
       
     })();
@@ -111,38 +121,25 @@ function App() {
   });
 
   console.log(color);
-  const tu = ["20210802", "20211213", "20211214", "20211222", "20211226", "20210128", "20210208","20210222","20211011","20211011","20211017"];
-  console.log(tu);
-  const time = tu.map((item) => {
-    return new Date(+item.substring(0, 4), +item.substring(4, 6)-1, +item.substring(6, 8));
-  });
-  console.log(time);
-  time.sort((a, b) => {
-    return (a > b ? 1 : -1);
-  });
+  //const tu = ["20210802", "20211213", "20211214", "20211222", "20211226", "20210128", "20210208","20210222","20211011","20211011","20211017"];
+  //console.log(tu);
+  //const time = tu.map((item) => {
+  //  return new Date(+item.substring(0, 4), +item.substring(4, 6)-1, +item.substring(6, 8));
+  //});
+  //console.log(time);
+  //time.sort((a, b) => {
+  //  return (a > b ? 1 : -1);
+  //});
 
-  console.log(time);
+  //console.log(time);
 
-  const timeDomain = [];
-  const beginTime = new Date(2021, 5-1, 1);
-  const endTime = new Date(2021, 12-1, 31);
-  for(let i = 0; i < time.length; i++) {
-    timeDomain.push(difference(beginTime, time[i]) <= 0 || difference(beginTime, time[i]));
-    console.log(difference(beginTime, time[i]));
-  }
+  //const timeDomain = [];
+ 
+  //for(let i = 0; i < time.length; i++) {
+  //  timeDomain.push(difference(beginTime, time[i]) <= 0 || difference(beginTime, time[i]));
+  //  console.log(difference(beginTime, time[i]));
+  //}
 
-  const campaignData_copy = [...campaignData];
-  console.log(campaignData_copy);
-
-  campaignData_copy.map((item1, i) => {
-    item1.map((item2, j) => {
-      item2.data = difference(beginTime,invertTimeType(item2.data)); 
-    })
-  })
-
-  console.log(campaignData_copy);
-  //setCampaignData(campaignData_copy);
-  console.log(campaignData);
 
 
   //const color = d3.scaleLinear().range(['white', 'red']).domain([Math.min(...heatData), Math.max(...heatData)])
@@ -154,14 +151,16 @@ function App() {
     return (
       
       <div>
-        <div className="hamburger">
+
+
+        <div className="hamburger" >
           <input type="checkbox" id={classes.hamburger_check} className={classes.hamburger_hidden}></input>
           <label for={classes.hamburger_check} className={classes.menu_Bt}>
             <span></span>
           </label>
           
-          <nav className={classes.contents}>
-            <section className="section">
+          <nav className={classes.contents} style={{overflowY:'scroll'}}>
+            <section className="section" >
               <div className="content">
                 <h1 className="title is-3" >
                   詳細絞り込み
@@ -169,24 +168,70 @@ function App() {
               </div>
               <div className="content">
                 <input type="checkbox" id="check" value="checkB1" onChange={handleChangeCheck} checked={checkJudge["checkB1"]}></input>
-                <label for="check">キャンペーン1</label>
+                <label for="check">プレゼント応募</label>
               </div>
               <div className="content">
                 <input type="checkbox" id="check2" value="checkB2" onChange={handleChangeCheck} checked={checkJudge["checkB2"]}></input>
-                <label for="check2">キャンペーン2</label>
+                <label for="check2">フォロー＋RT</label>
               </div>
               <div className="content">
                 <input type="checkbox" id="check3" value="checkB3" onChange={handleChangeCheck} checked={checkJudge["checkB3"]}></input>
-                <label for="check3">キャンペーン3</label>
+                <label for="check3">フォロー＋ハッシュタグ</label>
               </div>
               <div className="content">
                 <input type="checkbox" id="check4" value="checkB4" onChange={handleChangeCheck} checked={checkJudge["checkB4"]}></input>
-                <label for="check4">キャンペーン4</label>
+                <label for="check4">RT</label>
               </div>
               <div className="content">
                 <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">キャンペーン5</label>
+                <label for="check5">ハッシュタグ</label>
               </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">指定ツイート</label>
+              </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">投稿</label>
+              </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">毎日情報解禁（キャラ情報など）</label>
+              </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">カウントダウン投稿（画像）</label>
+              </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">カウントダウン投稿（動画）</label>
+              </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">定期投稿</label>
+              </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">プレゼント必ずもらえる</label>
+              </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">フォロワー数に応じて</label>
+              </div>
+
+              <div className="content">
+                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
+                <label for="check5">ハッシュタグでリプ返信</label>
+              </div>
+              
 
               <div className="content">
                 <h1 className="title is-3">
@@ -197,12 +242,17 @@ function App() {
                   <p className="content">キャンペーン内容：{detailText}</p>
                 </div>
               </div>
+
             </section>
           </nav>
+
         </div>
 
 
-        <div className={classes.graphs}>
+        <div className={classes.graphs} >
+
+
+
           <svg
           viewBox={`${-margin.left} ${-margin.top} ${svgWidth} ${svgHeight}`}
           style={{ border: "solid 1px" }}
@@ -215,13 +265,17 @@ function App() {
             <text x = {320} y = {0} fontSize={8}>8月</text>
             <text x = {370} y = {0} fontSize={8}>9月</text>
             <text x = {420} y = {0} fontSize={8}>10月</text>
+            <text x = {470} y = {0} fontSize={8}>11月</text>
+            <text x = {520} y = {0} fontSize={8}>12月</text>
+            <text x = {570} y = {0} fontSize={8}>1月</text>
+
           </g>
 
             
           <ColoredRect  heatData={heatData} color={color} showTooltip = {showTooltip} hideTooltip = {hideTooltip}/>
           
 
-          <g>
+          {/* <g>
             {timeDomain.map((item, idx) => {
 
               console.log(item);
@@ -238,9 +292,9 @@ function App() {
                 />
               );
             })}
-          </g>
+          </g> */}
 
-          <CampaignPoint campaignData = {campaignData_copy} campaignScale = {campaignScale} />
+          <CampaignPoint campaignData = {campaignData} campaignScale = {campaignScale} setDetailText = {setDetailText} setDetailDate = {setDetailDate}/>
 
 
           <g>
@@ -260,7 +314,7 @@ function App() {
       
         </div>
 
-        <g ref = {toolref} id="tooltip" style={{position : 'absolute'}} ></g>  
+        <g ref = {toolref} id="tooltip" style={{position : 'absolute'}} className="card"></g>  
       </div>
     );
   }

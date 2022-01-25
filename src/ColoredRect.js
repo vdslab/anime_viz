@@ -22,7 +22,7 @@ const ColoredRect = ({heatData,color, showTooltip, hideTooltip}) => {
                 y = {40*i + 10}
                 width={50}
                 height={31}
-                opacity={0.7}
+                opacity={1.1}
                 fill={color[i](item)}
               
                 onMouseMove={showTooltip}
