@@ -1,6 +1,8 @@
 import * as d3 from "d3";
 import React, {useState, useEffect} from "react";
 import classes from "./style.module.css";
+import Tooltip from "./Tooltip";
+import ColoredRect from "./ColoredRect";
 
 function App() {
   const [data, setData] = useState([]);
@@ -9,6 +11,7 @@ function App() {
   const [menu, setMenu] = useState([]);
   const [detailDate, setDetailDate] = useState([]);
   const [detailText, setDetailText] = useState([]);
+  const [showTip, setShowTip] = useState(false);
 
   function handleChangeDate(e){
     setDetailDate(e);
@@ -194,36 +197,10 @@ function App() {
             <text x = {370} y = {0} fontSize={8}>9月</text>
             <text x = {420} y = {0} fontSize={8}>10月</text>
           </g>
-            <g>
-              {heatData.map((array, i)=> {
-                console.log(array)
-                //console.log(color)
-                return(
-                array.map((item, j) => {
-                  //console.log(color[i](item))
-                  //console.log(scale(j))
-                  //console.log(idx++);
-                  return(
-                    <g>
-                    
 
-                  <rect 
-                    x = {50*j + 150}
-                    y = {40*i + 10}
-                    width={50}
-                    height={31}
-                    fill={color[i](item)}
-                  />
-                  </g>
-                  
-                  );
-                }) 
-                );
-              })
             
-
-            }
-            </g>
+          <ColoredRect heatData={heatData} color={color}/>
+          
 
           <g>
             {timeDomain.map((item, idx) => {
@@ -234,6 +211,7 @@ function App() {
                 cx = {campaignScale(item)}
                 cy = {25}
                 r = "5"
+
                 onClick={() => {
                   handleChangeDate(tu[idx]);
                   handleChangeText(data[0]['campaign'][idx]['abstract']);
@@ -242,6 +220,8 @@ function App() {
               );
             })}
           </g>
+
+
 
           <g>
             {campaignData_copy.map((item1, idx) => {
@@ -254,7 +234,7 @@ function App() {
                     <circle 
                     cx = {campaignScale(item2.data)}
                     cy = {25 + 40 * idx}
-                    r = '6'/>
+                    r = '4'/>
                   ;
                 })
               );
@@ -278,6 +258,14 @@ function App() {
         </svg>
       
         </div>
+
+        <div>
+              <Tooltip content="Tooltipに表示させたい内容をここに記述します">
+                <button>Tooltip</button>
+              </Tooltip>
+              <div>ここから文書は続きます。</div>
+          </div>
+          
       </div>
     );
   }
