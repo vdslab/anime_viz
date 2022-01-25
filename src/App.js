@@ -39,15 +39,35 @@ function App() {
     setDetailText(e);
   }
 
-  const checkJudged = { checkB1: true, checkB2: true, checkB3: true, checkB4: true, checkB5: true}
+  const checkJudged = {
+  "放送開始":true, 
+  "プレゼント応募": true, 
+  "フォロー＋RT": true, 
+  "フォロー＋ハッシュタグ": true, 
+  "RT": true, 
+  "ハッシュタグ": true,
+  "指定ツイート":true,
+  "投稿":true,
+  "毎日情報解禁（キャラ情報など）":true,
+  "カウントダウン投稿（画像）":true,
+  "カウントダウン投稿（動画）":true,
+  "定期投稿":true,
+  "プレゼント必ずもらえる":true,
+  "フォロワー数に応じて":true,
+  "ハッシュタグでリプ返信":true,
+  "その他":true
+}
 
   const [checkJudge, setCheckJudge] = useState(checkJudged);
 
   const handleChangeCheck = e =>{
+    console.log("####")
     const newCheck = Object.assign({}, checkJudge, {
       [e.target.value]: !checkJudge[e.target.value]
     });
+    console.log(newCheck)
     setCheckJudge(newCheck);
+    console.log(checkJudged);
   }
 
 
@@ -57,6 +77,7 @@ function App() {
     left: 50,
     right: 100,
   };
+
   const contentWidth = 600;
   const contentHeight = 700;
   const beginTime = new Date(2021, 5-1, 1);
@@ -102,8 +123,6 @@ function App() {
       });
 
       setCampaignData(tmpCampaign)
-
-      
     })();
   }, []);
 
@@ -166,71 +185,17 @@ function App() {
                   詳細絞り込み
                 </h1>
               </div>
-              <div className="content">
-                <input type="checkbox" id="check" value="checkB1" onChange={handleChangeCheck} checked={checkJudge["checkB1"]}></input>
-                <label for="check">プレゼント応募</label>
-              </div>
-              <div className="content">
-                <input type="checkbox" id="check2" value="checkB2" onChange={handleChangeCheck} checked={checkJudge["checkB2"]}></input>
-                <label for="check2">フォロー＋RT</label>
-              </div>
-              <div className="content">
-                <input type="checkbox" id="check3" value="checkB3" onChange={handleChangeCheck} checked={checkJudge["checkB3"]}></input>
-                <label for="check3">フォロー＋ハッシュタグ</label>
-              </div>
-              <div className="content">
-                <input type="checkbox" id="check4" value="checkB4" onChange={handleChangeCheck} checked={checkJudge["checkB4"]}></input>
-                <label for="check4">RT</label>
-              </div>
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">ハッシュタグ</label>
-              </div>
 
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">指定ツイート</label>
-              </div>
+          
 
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">投稿</label>
-              </div>
-
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">毎日情報解禁（キャラ情報など）</label>
-              </div>
-
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">カウントダウン投稿（画像）</label>
-              </div>
-
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">カウントダウン投稿（動画）</label>
-              </div>
-
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">定期投稿</label>
-              </div>
-
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">プレゼント必ずもらえる</label>
-              </div>
-
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">フォロワー数に応じて</label>
-              </div>
-
-              <div className="content">
-                <input type="checkbox" id="check5" value="checkB5" onChange={handleChangeCheck} checked={checkJudge["checkB5"]}></input>
-                <label for="check5">ハッシュタグでリプ返信</label>
-              </div>
+              {Object.keys(checkJudged).map((item, idx) => {
+                  return(
+                    <div className="content">
+                    <input type="checkbox" id="check" value={item} onChange={handleChangeCheck} checked={checkJudge[item]}></input>
+                    <label for="check">{item}</label>
+                  </div>  
+                  );
+                })}
               
 
               <div className="content">
@@ -242,6 +207,8 @@ function App() {
                   <p className="content">キャンペーン内容：{detailText}</p>
                 </div>
               </div>
+
+              
 
             </section>
           </nav>
@@ -294,7 +261,7 @@ function App() {
             })}
           </g> */}
 
-          <CampaignPoint campaignData = {campaignData} campaignScale = {campaignScale} setDetailText = {setDetailText} setDetailDate = {setDetailDate}/>
+          <CampaignPoint campaignData = {campaignData} campaignScale = {campaignScale} setDetailText = {setDetailText} setDetailDate = {setDetailDate} checkJudge = {checkJudge}/>
 
 
           <g>
