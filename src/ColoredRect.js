@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import * as d3 from "d3";
 
-const ColoredRect = ({heatData,color}) => {
-
+const ColoredRect = ({heatData,color, showTooltip, hideTooltip}) => {
+    const [showTip, setShowTip] = useState(false);
     return(<g>
         {
         heatData.map((array, i)=> {
@@ -22,8 +22,13 @@ const ColoredRect = ({heatData,color}) => {
                 y = {40*i + 10}
                 width={50}
                 height={31}
+                opacity={0.7}
                 fill={color[i](item)}
+              
+                onMouseMove={showTooltip}
+                onMouseLeave={hideTooltip}
               />
+              <title>SVG Title Demo example</title>
               </g>
               
               );
@@ -31,6 +36,8 @@ const ColoredRect = ({heatData,color}) => {
             );
           })
         }
+
+        
         </g>
     );
 }

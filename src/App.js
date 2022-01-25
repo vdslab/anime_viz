@@ -1,8 +1,10 @@
 import * as d3 from "d3";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import classes from "./style.module.css";
 import Tooltip from "./Tooltip";
 import ColoredRect from "./ColoredRect";
+import CampaignPoint from "./CampaignPoint";
+
 
 function App() {
   const [data, setData] = useState([]);
@@ -12,6 +14,23 @@ function App() {
   const [detailDate, setDetailDate] = useState([]);
   const [detailText, setDetailText] = useState([]);
   const [showTip, setShowTip] = useState(false);
+  const toolref = useRef(null)
+
+  const showTooltip = (event) => {
+    console.log("3333");
+    console.log(toolref.current.style.left);
+
+    toolref.current.style.left = event.pageX + 10 + 'px';
+    toolref.current.style.top = event.pageY + 10 + 'px';
+    toolref.current.style.display = 'block'; 
+    toolref.current.innerHTML = "ti";
+    console.log(toolref.current.style.left);
+    //toolref.style.left = event.pageY + 10 + 'px';
+  }
+
+  const hideTooltip = (event) => {
+    toolref.current.style.display = "none";
+  }
 
   function handleChangeDate(e){
     setDetailDate(e);
@@ -199,7 +218,7 @@ function App() {
           </g>
 
             
-          <ColoredRect heatData={heatData} color={color}/>
+          <ColoredRect  heatData={heatData} color={color} showTooltip = {showTooltip} hideTooltip = {hideTooltip}/>
           
 
           <g>
@@ -221,25 +240,7 @@ function App() {
             })}
           </g>
 
-
-
-          <g>
-            {campaignData_copy.map((item1, idx) => {
-              
-              return(
-                item1.map((item2, jdx) => {
-                  console.log(item2.data);
-                  console.log(item2.abstract);
-                  return item2.data > 550 || 
-                    <circle 
-                    cx = {campaignScale(item2.data)}
-                    cy = {25 + 40 * idx}
-                    r = '4'/>
-                  ;
-                })
-              );
-            })}
-          </g>
+          <CampaignPoint campaignData = {campaignData_copy} campaignScale = {campaignScale} />
 
 
           <g>
@@ -259,13 +260,7 @@ function App() {
       
         </div>
 
-        <div>
-              <Tooltip content="Tooltipに表示させたい内容をここに記述します">
-                <button>Tooltip</button>
-              </Tooltip>
-              <div>ここから文書は続きます。</div>
-          </div>
-          
+        <g ref = {toolref} id="tooltip" style={{position : 'absolute'}} ></g>  
       </div>
     );
   }
