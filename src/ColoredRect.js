@@ -18,7 +18,7 @@ const ColoredRect = ({heatData,color}) => {
                 
 
               <rect 
-                x = {50*j + 150}
+                x = {50*j + 260}
                 y = {40*i + 10}
                 width={50}
                 height={31}
