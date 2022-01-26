@@ -165,6 +165,9 @@ function App() {
   //let idx = 0;
   return (
     <div>
+      <div className="header">
+        <h1>Anime viz</h1>
+      </div>
       <div className="hamburger">
         <input
           type="checkbox"
@@ -222,9 +225,7 @@ function App() {
           </section>
         </nav>
       </div>
-      <div className="header">
-        <h1>Anime viz</h1>
-      </div>
+
       <div className="graph">
         <div className={classes.graphs}>
           <svg
