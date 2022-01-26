@@ -192,7 +192,7 @@ function App() {
 
               <div className="content">
                 <p className="content">日付：{detail["date"]}</p>
-                <p className="content">分類：{detail["group"]}</p>
+                <p className="content">group：{detail["group"]}</p>
                 <p className="content">施策名：{detail["name"]}</p>
                 <p className="content">施策内容：{detail["abstract"]}</p>
               </div>
@@ -281,15 +281,15 @@ function App() {
             <br />
             上から、直近のフォロワー数が多い作品順に並んでいます。
             <br />
-            黒丸はSNS施策、星印はアニメの放送開始日を表しています。
-            PCの場合、黒丸の上にマウスを置くと施策のタイトルを見ることが出来ます。
+            黒丸はSNS施策、星印はアニメの放送dataを表しています。
+            PCの場合、黒丸の上にマウスを置くと施策のを見ることが出来ます。
             <br />
             <br />
             <strong>詳細絞り込みについて</strong>
             <br />
             PCの場合は画面右部分、スマートフォンの場合はハンバーガーメニューを開いて、詳細絞り込みをすることができます。
             <br />
-            チェックボックスにチェックを入れた分類の施策のみを絞り込んで見ることが出来ます。
+            チェックボックスにチェックを入れたgroupの施策のみを絞り込んで見ることが出来ます。
             <br />
             <br />
             <strong>詳細について</strong>
@@ -298,7 +298,7 @@ function App() {
             <br />
             日付：いつからその施策が始まったか
             <br />
-            分類：どのような分類の施策か
+            group：どのようなgroupの施策か
             <br />
             施策名：施策の名前
             <br />
