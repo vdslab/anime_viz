@@ -68,10 +68,10 @@ function App() {
     right: 100,
   };
 
-  const contentWidth = 600;
-  const contentHeight = 700;
+  const contentWidth = 700;
+  const contentHeight = 600;
   const beginTime = new Date(2021, 5 - 1, 1);
-  const endTime = new Date(2021, 12 - 1, 31);
+  const endTime = new Date(2022, 1 - 1, 31);
 
   const difference = (date1, date2) => {
     const date1utc = Date.UTC(
@@ -170,7 +170,7 @@ function App() {
   const campaignScale = d3
     .scaleLinear()
     .domain([0, difference(beginTime, endTime)])
-    .range([150, 550]);
+    .range([260, 710]);
   //let idx = 0;
   return (
     <div>
@@ -196,14 +196,15 @@ function App() {
             {Object.keys(checkJudged).map((item, idx) => {
               return (
                 <div className="content">
+                  <label for={"check" + String(idx)}>
                   <input
                     type="checkbox"
-                    id="check"
+                    id={"check" + String(idx)}
                     value={item}
                     onChange={handleChangeCheck}
                     checked={checkJudge[item]}
                   ></input>
-                  <label for="check">{item}</label>
+                  {item}</label>
                 </div>
               );
             })}
@@ -231,31 +232,31 @@ function App() {
             style={{ border: "solid 1px", paddingTop: "20px" }}
           >
             <g>
-              <text x={170} y={0} fontSize={8}>
+              <text x={280} y={0} fontSize={8}>
                 5月
               </text>
-              <text x={220} y={0} fontSize={8}>
+              <text x={330} y={0} fontSize={8}>
                 6月
               </text>
-              <text x={270} y={0} fontSize={8}>
+              <text x={380} y={0} fontSize={8}>
                 7月
               </text>
-              <text x={320} y={0} fontSize={8}>
+              <text x={430} y={0} fontSize={8}>
                 8月
               </text>
-              <text x={370} y={0} fontSize={8}>
+              <text x={480} y={0} fontSize={8}>
                 9月
               </text>
-              <text x={420} y={0} fontSize={8}>
+              <text x={530} y={0} fontSize={8}>
                 10月
               </text>
-              <text x={470} y={0} fontSize={8}>
+              <text x={580} y={0} fontSize={8}>
                 11月
               </text>
-              <text x={520} y={0} fontSize={8}>
+              <text x={630} y={0} fontSize={8}>
                 12月
               </text>
-              <text x={570} y={0} fontSize={8}>
+              <text x={680} y={0} fontSize={8}>
                 1月
               </text>
             </g>

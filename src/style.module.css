@@ -22,7 +22,7 @@
     position: fixed;
     top: 0;
     left: 70%;
-    z-index: 99;
+    z-index: 0;
     background: #fff;
 }
 
@@ -60,7 +60,7 @@
         position: fixed;
         top: 0;
         left: 100%;
-        z-index: 99;
+        z-index: 0;
         background: #fff;
         transition: 0.5s;
     }
