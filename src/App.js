@@ -275,11 +275,11 @@ function App() {
 
         <Tooltip toolref={toolref} abstract={hoverInfo} />
       </div>
-      <footer class="footer">
+      <div class="explanation">
         <div class="content">
-          <h4>
+          <h3>
             <strong>使い方</strong>
-          </h4>
+          </h3>
           <p>
             <br />
             <strong>グラフについて</strong>
@@ -303,14 +303,14 @@ function App() {
             <br />
             日付：いつからその施策が始まったか
             <br />
-            分類：どのようなgroupの施策か
+            分類：どのような分類の施策か
             <br />
             施策名：施策の名前
             <br />
             施策内容：どのような施策なのか
           </p>
         </div>
-      </footer>
+      </div>
     </div>
   );
 }
