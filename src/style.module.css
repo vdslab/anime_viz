@@ -1,8 +1,32 @@
+.graphBody {
+    margin-top: header;
+}
+
 .hamburger_hidden {
     display: none;
 }
 
-@media screen and (max-width: 500px) {
+.graphs {
+    display: flex;
+    width: auto;
+    height: 100%;
+    max-width: 70%;
+    clear: both;
+    display: block;
+}
+
+.contents {
+    display: flex;
+    width: 30%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 70%;
+    z-index: 99;
+    background: #fff;
+}
+
+@media screen and (max-width: 480px) {
 
     /* set space of hamburger_menu button */
     .menu_Bt {
@@ -55,18 +79,15 @@
         left: 60%;
     }
 
-}
-
-@media screen and (min-width: 501px) {
-
     .graphs {
         display: flex;
         width: auto;
         height: 100%;
-        max-width: 70%;
+        max-width: 100%;
         clear: both;
         display: block;
     }
+
 
     .contents {
         display: flex;
@@ -80,3 +101,4 @@
     }
 
 }
+
