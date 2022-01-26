@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import { useState } from 'react';
 
-const CampaignPoint = ({campaignData, campaignScale, setDetail, checkJudge}) => {
+const CampaignPoint = ({campaignData, campaignScale, setDetail, checkJudge,  showTooltip, hideTooltip, setHoverInfo}) => {
 
   const beginTime = new Date(2021, 5-1, 1);
     return(
@@ -22,7 +22,9 @@ const CampaignPoint = ({campaignData, campaignScale, setDetail, checkJudge}) => 
                     cx = {campaignScale(item2.data)}
                     cy = {25 + 40 * idx}
                     r = '7'
-                    onClick={() => {setDetail({"date":dt.getMonth(), "name":item2.name, "group":item2.group, "abstract": item2.abstract})}}
+                    onMouseMove={() => showTooltip(item2)}
+                    onMouseLeave={hideTooltip}
+                    onClick={() => {setDetail({"date":String(dt.getFullYear())+'/'+String(dt.getMonth() + 1)+'/'+ String(dt.getDate()) , "name":item2.name, "group":item2.group, "abstract": item2.abstract})}}
                     />
                   );
 

@@ -1,18 +1,13 @@
-
 import { useState } from 'react';
-//import './Tooltip.css';
 
-const Tooltip = ({ children, content }) => {
 
-  const [show, setShow] = useState(false);
+const Tooltip = ({toolref, abstract}) => {
+
+  
   return (
-    <div className="container">
-      <div
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
-      >{children}</div>
-      {show && <div>{content}</div>}
-    </div>
+    <g ref = {toolref} id="tooltip" style={{position : 'absolute', display:'none'}} className="card ">
+      <g className='card-content hero is-primary'>{abstract ||'no info'}</g>
+    </g>  
   );
 };
 

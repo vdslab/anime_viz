@@ -12,17 +12,17 @@ function App() {
   const [campaignData, setCampaignData] = useState([]);
   const [menu, setMenu] = useState([]);
   const [detail, setDetail] = useState([{"date":null,"group":null, "name":null,"abstract":null}]);
-  
+  const [hoverInfo, setHoverInfo] = useState("");
   const toolref = useRef(null)
 
-  const showTooltip = (event) => {
+  const showTooltip = (event, item) => {
     //console.log("3333");
     console.log(toolref.current.style.left);
-
+    //setHoverInfo(item.abstract)
     toolref.current.style.left = event.pageX + 10 + 'px';
     toolref.current.style.top = event.pageY + 10 + 'px';
     toolref.current.style.display = 'block'; 
-    toolref.current.innerHTML = "ti";
+   
     console.log(toolref.current.style.left);
   }
 
@@ -230,29 +230,7 @@ function App() {
 
             
           <ColoredRect  heatData={heatData} color={color} showTooltip = {showTooltip} hideTooltip = {hideTooltip}/>
-          
-
-          {/* <g>
-            {timeDomain.map((item, idx) => {
-
-              console.log(item);
-              return(
-                <circle
-                cx = {campaignScale(item)}
-                cy = {25}
-                r = "5"
-
-                onClick={() => {
-                  handleChangeDate(tu[idx]);
-                  handleChangeText(data[0]['campaign'][idx]['abstract']);
-                }}
-                />
-              );
-            })}
-          </g> */}
-
-          <CampaignPoint campaignData = {campaignData} campaignScale = {campaignScale} setDetail= {setDetail} checkJudge = {checkJudge}/>
-
+          <CampaignPoint campaignData = {campaignData} campaignScale = {campaignScale} setDetail= {setDetail} checkJudge = {checkJudge} showTooltip = {showTooltip} hideTooltip = {hideTooltip} setHoverInfo = {setHoverInfo}/>
 
           <g>
               {data.map((item, i) => {
@@ -271,7 +249,7 @@ function App() {
       
         </div>
 
-        <g ref = {toolref} id="tooltip" style={{position : 'absolute'}} className="card"></g>  
+        <Tooltip toolref={toolref} abstract = {hoverInfo}/> 
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as d3 from "d3";
 
-const ColoredRect = ({heatData,color, showTooltip, hideTooltip}) => {
+const ColoredRect = ({heatData,color}) => {
     
     return(<g>
         {
@@ -23,8 +23,6 @@ const ColoredRect = ({heatData,color, showTooltip, hideTooltip}) => {
                 width={50}
                 height={31}
                 fill={color[i](item)}
-                onMouseMove={showTooltip}
-                onMouseLeave={hideTooltip}
               />
          
               </g>
