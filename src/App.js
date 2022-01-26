@@ -35,17 +35,10 @@ function App() {
   };
 
   const checkJudged = {
-    プレゼント応募: true,
-    "フォロー＋RT": true,
-    "フォロー＋ハッシュタグ": true,
-    RT: true,
-    ハッシュタグ: true,
-    指定ツイート: true,
-    投稿: true,
-    "毎日情報解禁（キャラ情報など）": true,
+    "フォロー＋RTでプレゼント": true,
+    "フォロー＋ハッシュタグでプレゼント": true,
     "カウントダウン投稿（画像）": true,
     "カウントダウン投稿（動画）": true,
-    定期投稿: true,
     その他: true,
   };
 
