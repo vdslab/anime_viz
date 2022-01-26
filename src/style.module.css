@@ -23,6 +23,20 @@
 }
 
 @media screen and (max-width: 480px) {
+
+    .menu_Bt {
+        display: flex;
+        height: 60px;
+        width: 60px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: 0%;
+        left: 86%;
+        z-index: 100;
+        cursor: pointer;
+    }
+
   .menu_Bt span,
   .menu_Bt span:before,
   .menu_Bt span:after {
@@ -31,7 +45,7 @@
     height: 3px;
     width: 25px;
     border-radius: 3px;
-    background: #333;
+    background: #000;
     transition: 0.5s;
     position: absolute;
   }
@@ -58,6 +72,18 @@
 
   #hamburger_check:checked ~ .contents {
     left: 60%;
+  }
+
+  #hamburger_check:checked ~ .menu_Bt span {
+      background: #000;
+  }
+
+  #hamburger_check:checked ~ .menu_Bt span::before {
+    background: #000;
+  }
+
+  #hamburger_check:checked ~ .menu_Bt span::after {
+    background: #000;
   }
 
   .graphs {

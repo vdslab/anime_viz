@@ -225,7 +225,6 @@ function App() {
           </section>
         </nav>
       </div>
-
       <div className="graph">
         <div className={classes.graphs}>
           <svg
