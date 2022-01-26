@@ -221,7 +221,6 @@ function App() {
           </section>
         </nav>
       </div>
-
       <div className="graph">
         <div className={classes.graphs}>
           <svg
@@ -292,6 +291,42 @@ function App() {
 
         <Tooltip toolref={toolref} abstract={hoverInfo} />
       </div>
+      <footer class="footer">
+        <div class="content">
+          <h4>
+            <strong>使い方</strong>
+          </h4>
+          <p>
+            <br />
+            <strong>グラフについて</strong>
+            <br />
+            上から、直近のフォロワー数が多い作品順に並んでいます。
+            <br />
+            黒丸はSNS施策、はアニメの放送開始日を表しています。
+            PCの場合、黒丸の上にマウスを置くと施策のタイトルを見ることが出来ます。
+            <br />
+            <br />
+            <strong>詳細絞り込みについて</strong>
+            <br />
+            PCの場合は画面右部分、スマートフォンの場合はハンバーガーメニューを開いて、詳細絞り込みをすることができます。
+            <br />
+            チェックボックスにチェックを入れた分類の施策のみを絞り込んで見ることが出来ます。
+            <br />
+            <br />
+            <strong>詳細について</strong>
+            <br />
+            詳細では施策の詳細を見ることが出来ます。
+            <br />
+            日付：いつからその施策が始まったか
+            <br />
+            分類：どのような分類の施策か
+            <br />
+            施策名：施策の名前
+            <br />
+            施策内容：どのような施策なのか
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
