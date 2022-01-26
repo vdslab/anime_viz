@@ -33,21 +33,10 @@ function App() {
   };
 
   const checkJudged = {
-
-  "プレゼント応募": true, 
   "フォロー＋RT": true, 
   "フォロー＋ハッシュタグ": true, 
-  "RT": true, 
-  "ハッシュタグ": true,
-  "指定ツイート":true,
-  "投稿":true,
-  "毎日情報解禁（キャラ情報など）":true,
   "カウントダウン投稿（画像）":true,
-  "カウントダウン投稿（動画）":true,
-  "定期投稿":true,
-  "プレゼント必ずもらえる":true,
-  "フォロワー数に応じて":true,
-  "ハッシュタグでリプ返信":true,
+  "引用RT＋ハッシュタグ":true,
   "その他":true
 }
 
@@ -69,7 +58,7 @@ function App() {
   };
 
   const contentWidth = 700;
-  const contentHeight = 600;
+  const contentHeight = 350;
   const beginTime = new Date(2021, 5 - 1, 1);
   const endTime = new Date(2022, 1 - 1, 31);
 
