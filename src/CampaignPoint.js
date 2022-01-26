@@ -56,10 +56,10 @@ const CampaignPoint = ({
             item2.data >= 0 && item2.group === "放送開始" && (
               <image
                 href="star.png"
-                height="21"
-                width="21"
+                height="15"
+                width="15"
                 x={campaignScale(item2.data) - 10}
-                y={13.5 + 40 * idx}
+                y={16.5 + 40 * idx}
                 onMouseMove={(e) => {
                   setHoverInfo(item2.name || item2.abstract);
                   showTooltip(e);
