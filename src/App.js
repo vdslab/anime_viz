@@ -192,7 +192,7 @@ function App() {
 
               <div className="content">
                 <p className="content">日付：{detail["date"]}</p>
-                <p className="content">group：{detail["group"]}</p>
+                <p className="content">分類：{detail["group"]}</p>
                 <p className="content">施策名：{detail["name"]}</p>
                 <p className="content">施策内容：{detail["abstract"]}</p>
                 <br />
@@ -294,7 +294,7 @@ function App() {
             <br />
             PCの場合は画面右部分、スマートフォンの場合はハンバーガーメニューを開いて、詳細絞り込みをすることができます。
             <br />
-            チェックボックスにチェックを入れたgroupの施策のみを絞り込んで見ることが出来ます。
+            チェックボックスにチェックを入れた分類の施策のみを絞り込んで見ることが出来ます。
             <br />
             <br />
             <strong>詳細について</strong>
@@ -303,7 +303,7 @@ function App() {
             <br />
             日付：いつからその施策が始まったか
             <br />
-            group：どのようなgroupの施策か
+            分類：どのようなgroupの施策か
             <br />
             施策名：施策の名前
             <br />
