@@ -161,7 +161,7 @@ function App() {
   const campaignScale = d3
     .scaleLinear()
     .domain([0, difference(beginTime, endTime)])
-    .range([260, 710]);
+    .range([300, 750]);
   //let idx = 0;
   return (
     <div>
@@ -223,39 +223,18 @@ function App() {
       </div>
       <div className="graph">
         <div className={classes.graphs}>
+
           <svg
             viewBox={`${-margin.left} ${-margin.top} ${svgWidth} ${svgHeight}`}
-            style={{ border: "solid 1px", paddingTop: "20px" }}
+            style={{ border: "solid 0.3px", paddingTop: "20px" }}
           >
-            <g>
-              <text x={280} y={0} fontSize={8}>
-                5月
-              </text>
-              <text x={330} y={0} fontSize={8}>
-                6月
-              </text>
-              <text x={380} y={0} fontSize={8}>
-                7月
-              </text>
-              <text x={430} y={0} fontSize={8}>
-                8月
-              </text>
-              <text x={480} y={0} fontSize={8}>
-                9月
-              </text>
-              <text x={530} y={0} fontSize={8}>
-                10月
-              </text>
-              <text x={580} y={0} fontSize={8}>
-                11月
-              </text>
-              <text x={630} y={0} fontSize={8}>
-                12月
-              </text>
-              <text x={680} y={0} fontSize={8}>
-                1月
-              </text>
-            </g>
+
+          
+              {["5", "6", "7", "8", "9", "10", "11", "12", "1"].map((item, idx) => {
+                return(<g><text x={320 + idx*50} y={0} fontSize={8}>{item + "月"}</text></g>);
+              })
+              }
+            
 
             <ColoredRect
               heatData={heatData}
@@ -279,7 +258,7 @@ function App() {
               {data.map((item, i) => {
                 return (
                   <text
-                    x={scale(0) - margin.left + 10}
+                    x={scale(0) - margin.left + 40}
                     y={40 * i + 30}
                     font-size="10"
                   >
