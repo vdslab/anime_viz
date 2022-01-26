@@ -195,7 +195,12 @@ function App() {
                 <p className="content">group：{detail["group"]}</p>
                 <p className="content">施策名：{detail["name"]}</p>
                 <p className="content">施策内容：{detail["abstract"]}</p>
+                <br />
+                <br />
+                <br />
               </div>
+
+              <p></p>
             </div>
           </section>
         </nav>

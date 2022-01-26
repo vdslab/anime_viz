@@ -6,21 +6,27 @@
   display: none;
 }
 
-@media screen and (max-width: 500px) {
-  /* set space of hamburger_menu button */
-  .menu_Bt {
-    display: flex;
-    right: 0%;
-    height: 50px;
-    width: 50px;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    cursor: pointer;
-  }
+.graphs {
+  display: flex;
+  width: auto;
+  height: 80%;
+  max-width: 70%;
+  clear: both;
+  display: block;
+}
 
+.contents {
+  display: flex;
+  width: 30%;
+  height: 80%;
+  position: fixed;
+  top: 0;
+  left: 70%;
+  z-index: 99;
+  background: #fff;
+}
+
+@media screen and (max-width: 480px) {
   .menu_Bt span,
   .menu_Bt span:before,
   .menu_Bt span:after {
@@ -42,10 +48,14 @@
     top: 8px;
   }
 
+  .menu_Bt span:after {
+    top: 8px;
+  }
+
   .contents {
     display: flex;
-    width: 40%;
-    height: 100%;
+    width: 30%;
+    height: 80%;
     position: fixed;
     top: 0;
     left: 100%;
@@ -57,26 +67,24 @@
   #hamburger_check:checked ~ .contents {
     left: 60%;
   }
-}
 
-@media screen and (min-width: 501px) {
   .graphs {
     display: flex;
     width: auto;
     height: 100%;
-    max-width: 70%;
+    max-width: 100%;
     clear: both;
     display: block;
   }
 
   .contents {
     display: flex;
-    width: 30%;
+    width: 40%;
     height: 100%;
     position: fixed;
     top: 0;
-    left: 70%;
-    z-index: 99;
+    left: 100%;
+    z-index: 0;
     background: #fff;
   }
 }
