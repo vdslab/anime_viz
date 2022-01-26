@@ -68,7 +68,7 @@ function App() {
   };
 
   const contentWidth = 600;
-  const contentHeight = 700;
+  const contentHeight = 330;
   const beginTime = new Date(2021, 5 - 1, 1);
   const endTime = new Date(2021, 12 - 1, 31);
 
