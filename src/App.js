@@ -139,7 +139,7 @@ function App() {
 
     return (
       
-      <div>
+      <div className="graphBody">
 
 
         <div className="hamburger "  >
