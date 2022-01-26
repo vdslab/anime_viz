@@ -33,23 +33,22 @@ function App() {
   };
 
   const checkJudged = {
-
-  "プレゼント応募": true, 
-  "フォロー＋RT": true, 
-  "フォロー＋ハッシュタグ": true, 
-  "RT": true, 
-  "ハッシュタグ": true,
-  "指定ツイート":true,
-  "投稿":true,
-  "毎日情報解禁（キャラ情報など）":true,
-  "カウントダウン投稿（画像）":true,
-  "カウントダウン投稿（動画）":true,
-  "定期投稿":true,
-  "プレゼント必ずもらえる":true,
-  "フォロワー数に応じて":true,
-  "ハッシュタグでリプ返信":true,
-  "その他":true
-}
+    プレゼント応募: true,
+    "フォロー＋RT": true,
+    "フォロー＋ハッシュタグ": true,
+    RT: true,
+    ハッシュタグ: true,
+    指定ツイート: true,
+    投稿: true,
+    "毎日情報解禁（キャラ情報など）": true,
+    "カウントダウン投稿（画像）": true,
+    "カウントダウン投稿（動画）": true,
+    定期投稿: true,
+    プレゼント必ずもらえる: true,
+    フォロワー数に応じて: true,
+    ハッシュタグでリプ返信: true,
+    その他: true,
+  };
 
   const [checkJudge, setCheckJudge] = useState(checkJudged);
 
@@ -141,26 +140,6 @@ function App() {
   });
 
   console.log(color);
-  //const tu = ["20210802", "20211213", "20211214", "20211222", "20211226", "20210128", "20210208","20210222","20211011","20211011","20211017"];
-  //console.log(tu);
-  //const time = tu.map((item) => {
-  //  return new Date(+item.substring(0, 4), +item.substring(4, 6)-1, +item.substring(6, 8));
-  //});
-  //console.log(time);
-  //time.sort((a, b) => {
-  //  return (a > b ? 1 : -1);
-  //});
-
-  //console.log(time);
-
-  //const timeDomain = [];
-
-  //for(let i = 0; i < time.length; i++) {
-  //  timeDomain.push(difference(beginTime, time[i]) <= 0 || difference(beginTime, time[i]));
-  //  console.log(difference(beginTime, time[i]));
-  //}
-
-  //const color = d3.scaleLinear().range(['white', 'red']).domain([Math.min(...heatData), Math.max(...heatData)])
   const svgWidth = margin.left + margin.right + contentWidth;
   const svgHeight = margin.top + margin.bottom + contentHeight;
   const scale = d3
@@ -213,10 +192,12 @@ function App() {
 
               <div className="content">
                 <p className="content">日付：{detail["date"]}</p>
-                <p className="content">分類：{detail["group"]}</p>
+                <p className="content">group：{detail["group"]}</p>
                 <p className="content">施策名：{detail["name"]}</p>
                 <p className="content">施策内容：{detail["abstract"]}</p>
-                <br/><br/><br/>
+                <br />
+                <br />
+                <br />
               </div>
 
               <p></p>
@@ -305,15 +286,15 @@ function App() {
             <br />
             上から、直近のフォロワー数が多い作品順に並んでいます。
             <br />
-            黒丸はSNS施策、はアニメの放送開始日を表しています。
-            PCの場合、黒丸の上にマウスを置くと施策のタイトルを見ることが出来ます。
+            黒丸はSNS施策、星印はアニメの放送dataを表しています。
+            PCの場合、黒丸の上にマウスを置くと施策のを見ることが出来ます。
             <br />
             <br />
             <strong>詳細絞り込みについて</strong>
             <br />
             PCの場合は画面右部分、スマートフォンの場合はハンバーガーメニューを開いて、詳細絞り込みをすることができます。
             <br />
-            チェックボックスにチェックを入れた分類の施策のみを絞り込んで見ることが出来ます。
+            チェックボックスにチェックを入れたgroupの施策のみを絞り込んで見ることが出来ます。
             <br />
             <br />
             <strong>詳細について</strong>
@@ -322,7 +303,7 @@ function App() {
             <br />
             日付：いつからその施策が始まったか
             <br />
-            分類：どのような分類の施策か
+            group：どのようなgroupの施策か
             <br />
             施策名：施策の名前
             <br />
