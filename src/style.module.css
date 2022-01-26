@@ -23,6 +23,19 @@
 }
 
 @media screen and (max-width: 480px) {
+    .menu_Bt {
+        display: fixed;
+        height: 30px;
+        width: 60px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: 10%;
+        left: 90%;
+        z-index: 100;
+        cursor: pointer;
+    }
+
   .menu_Bt span,
   .menu_Bt span:before,
   .menu_Bt span:after {
@@ -31,7 +44,7 @@
     height: 3px;
     width: 25px;
     border-radius: 3px;
-    background: #333;
+    background: #000;
     transition: 0.5s;
     position: absolute;
   }
