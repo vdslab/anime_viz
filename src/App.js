@@ -165,7 +165,6 @@ function App() {
   //let idx = 0;
   return (
     <div>
-      
       <div className="hamburger">
         <input
           type="checkbox"
@@ -179,7 +178,9 @@ function App() {
         <nav className={classes.contents} style={{ overflowY: "scroll" }}>
           <section className="section">
             <div className="content">
-              <h1 className="title is-3">詳細絞り込み</h1>
+              <h1 className="title" style={{ fontSize: "18px" }}>
+                絞り込み
+              </h1>
             </div>
 
             {Object.keys(checkJudged).map((item, idx) => {
@@ -201,7 +202,9 @@ function App() {
 
             <div className="content">
               <div className="detail">
-                <h1 className="title is-3">詳細</h1>
+                <h1 className="title" style={{ fontSize: "18px" }}>
+                  詳細
+                </h1>
 
                 <div className="content">
                   <p className="content">日付：{detail["date"]}</p>
@@ -224,18 +227,21 @@ function App() {
       </div>
       <div className="graph">
         <div className={classes.graphs}>
-
           <svg
             viewBox={`${-margin.left} ${-margin.top} ${svgWidth} ${svgHeight}`}
             style={{ border: "solid 0.3px", paddingTop: "20px" }}
           >
-
-          
-              {["5", "6", "7", "8", "9", "10", "11", "12", "1"].map((item, idx) => {
-                return(<g><text x={320 + idx*50} y={0} fontSize={8}>{item + "月"}</text></g>);
-              })
+            {["5", "6", "7", "8", "9", "10", "11", "12", "1"].map(
+              (item, idx) => {
+                return (
+                  <g>
+                    <text x={320 + idx * 50} y={0} fontSize={8}>
+                      {item + "月"}
+                    </text>
+                  </g>
+                );
               }
-            
+            )}
 
             <ColoredRect
               heatData={heatData}
@@ -288,7 +294,7 @@ function App() {
             PCの場合、黒丸の上にマウスを置くと施策のタイトルを見ることが出来ます。
             <br />
             <br />
-            <strong>詳細絞り込みについて</strong>
+            <strong>絞り込みについて</strong>
             <br />
             PCの場合は画面右部分、スマートフォンの場合は右上からメニューを開いて、詳細絞り込みをすることができます。
             <br />

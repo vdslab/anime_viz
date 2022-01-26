@@ -23,18 +23,18 @@
 }
 
 @media screen and (max-width: 480px) {
-    .menu_Bt {
-        display: fixed;
-        height: 30px;
-        width: 60px;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        top: 30px;
-        left: 90%;
-        z-index: 100;
-        cursor: pointer;
-    }
+  .menu_Bt {
+    display: fixed;
+    height: 30px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 30px;
+    left: 90%;
+    z-index: 100;
+    cursor: pointer;
+  }
 
   .menu_Bt span,
   .menu_Bt span:before,
@@ -74,15 +74,15 @@
   }
 
   #hamburger_check:checked ~ .menu_Bt span {
-      background: #000;
+    background: #000;
   }
 
   #hamburger_check:checked ~ .menu_Bt span::before {
-      background: #000;
+    background: #000;
   }
 
   #hamburger_check:checked ~ .menu_Bt span::after {
-      background: #000;
+    background: #000;
   }
 
   .graphs {
