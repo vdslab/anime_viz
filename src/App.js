@@ -58,7 +58,7 @@ function App() {
   };
 
   const contentWidth = 700;
-  const contentHeight = 350;
+  const contentHeight = 330;
   const beginTime = new Date(2021, 5 - 1, 1);
   const endTime = new Date(2022, 1 - 1, 31);
 
@@ -284,11 +284,11 @@ function App() {
 
         <Tooltip toolref={toolref} abstract={hoverInfo} />
       </div>
-      <footer class="footer">
+      <div class="explanation">
         <div class="content">
-          <h4>
+          <h3>
             <strong>使い方</strong>
-          </h4>
+          </h3>
           <p>
             <br />
             <strong>グラフについて</strong>
@@ -319,7 +319,7 @@ function App() {
             施策内容：どのような施策なのか
           </p>
         </div>
-      </footer>
+      </div>
     </div>
   );
 }
