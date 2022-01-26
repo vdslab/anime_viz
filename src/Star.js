@@ -12,6 +12,7 @@ const Star = ({campaignData, campaignScale,}) => {
                     width="15"
                     x={campaignScale(item2.data) - 10}
                     y={16.5 + 40 * idx}
+                    style={{pointerEvents: "none"}}
                     />
                     );
                 })

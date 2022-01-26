@@ -269,11 +269,8 @@ function App() {
               hideTooltip={hideTooltip}
             />
             
-            <Star
-              campaignData={campaignData}
-              campaignScale={campaignScale}            
-            />
-              
+
+
             <CampaignPoint
               campaignData={campaignData}
               campaignScale={campaignScale}
@@ -283,7 +280,10 @@ function App() {
               hideTooltip={hideTooltip}
               setHoverInfo={setHoverInfo}
             />
-
+            <Star
+              campaignData={campaignData}
+              campaignScale={campaignScale}            
+            />
 
 
             <g>
