@@ -168,6 +168,7 @@ function App() {
       <div className="header">
         <h1>Anime viz</h1>
       </div>
+      
       <div className="hamburger">
         <input
           type="checkbox"
