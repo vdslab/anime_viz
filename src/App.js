@@ -35,12 +35,19 @@ function App() {
   };
 
   const checkJudged = {
-  "フォロー＋RT": true, 
-  "フォロー＋ハッシュタグ": true, 
-  "カウントダウン投稿（画像）":true,
-  "引用RT＋ハッシュタグ":true,
-  "その他":true
-}
+    プレゼント応募: true,
+    "フォロー＋RT": true,
+    "フォロー＋ハッシュタグ": true,
+    RT: true,
+    ハッシュタグ: true,
+    指定ツイート: true,
+    投稿: true,
+    "毎日情報解禁（キャラ情報など）": true,
+    "カウントダウン投稿（画像）": true,
+    "カウントダウン投稿（動画）": true,
+    定期投稿: true,
+    その他: true,
+  };
 
   const [checkJudge, setCheckJudge] = useState(checkJudged);
 
@@ -188,14 +195,15 @@ function App() {
               return (
                 <div className="content">
                   <label for={"check" + String(idx)}>
-                  <input
-                    type="checkbox"
-                    id={"check" + String(idx)}
-                    value={item}
-                    onChange={handleChangeCheck}
-                    checked={checkJudge[item]}
-                  ></input>
-                  {item}</label>
+                    <input
+                      type="checkbox"
+                      id={"check" + String(idx)}
+                      value={item}
+                      onChange={handleChangeCheck}
+                      checked={checkJudge[item]}
+                    ></input>
+                    {item}
+                  </label>
                 </div>
               );
             })}
@@ -208,7 +216,9 @@ function App() {
                 <p className="content">分類：{detail["group"]}</p>
                 <p className="content">施策名：{detail["name"]}</p>
                 <p className="content">施策内容：{detail["abstract"]}</p>
-                <br/><br/><br/>
+                <br />
+                <br />
+                <br />
               </div>
 
               <p></p>
