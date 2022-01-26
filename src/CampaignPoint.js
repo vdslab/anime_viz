@@ -28,7 +28,7 @@ const CampaignPoint = ({
 
           return item2.data >= 0 &&
             checkJudge[item2.group] &&
-            item2.group !== "放送開始" ? (
+            item2.group !== "放送開始" && (
             <circle
               cx={campaignScale(item2.data)}
               cy={25 + 40 * idx}
@@ -52,35 +52,7 @@ const CampaignPoint = ({
                 });
               }}
             />
-          ) : (
-            item2.data >= 0 && item2.group === "放送開始" && (
-              <image
-                href="star.png"
-                height="15"
-                width="15"
-                x={campaignScale(item2.data) - 10}
-                y={16.5 + 40 * idx}
-                onMouseMove={(e) => {
-                  setHoverInfo(item2.name || item2.abstract);
-                  showTooltip(e);
-                }}
-                onMouseLeave={hideTooltip}
-                onClick={() => {
-                  setDetail({
-                    date:
-                      String(dt.getFullYear()) +
-                      "/" +
-                      String(dt.getMonth() + 1) +
-                      "/" +
-                      String(dt.getDate()),
-                    name: item2.name,
-                    group: item2.group,
-                    abstract: item2.abstract,
-                  });
-                }}
-              />
-            )
-          );
+          )
         });
       })}
     </g>

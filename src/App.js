@@ -4,6 +4,8 @@ import classes from "./style.module.css";
 import Tooltip from "./Tooltip";
 import ColoredRect from "./ColoredRect";
 import CampaignPoint from "./CampaignPoint";
+import Star from "./Star";
+
 import "./App.css";
 
 function App() {
@@ -256,6 +258,12 @@ function App() {
               showTooltip={showTooltip}
               hideTooltip={hideTooltip}
             />
+            
+            <Star
+              campaignData={campaignData}
+              campaignScale={campaignScale}            
+            />
+              
             <CampaignPoint
               campaignData={campaignData}
               campaignScale={campaignScale}
@@ -265,6 +273,8 @@ function App() {
               hideTooltip={hideTooltip}
               setHoverInfo={setHoverInfo}
             />
+
+
 
             <g>
               {data.map((item, i) => {
