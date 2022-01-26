@@ -33,7 +33,7 @@ function App() {
 
 
   const checkJudged = {
-  "放送開始":true, 
+
   "プレゼント応募": true, 
   "フォロー＋RT": true, 
   "フォロー＋ハッシュタグ": true, 
@@ -129,39 +129,20 @@ function App() {
   });
 
   console.log(color);
-  //const tu = ["20210802", "20211213", "20211214", "20211222", "20211226", "20210128", "20210208","20210222","20211011","20211011","20211017"];
-  //console.log(tu);
-  //const time = tu.map((item) => {
-  //  return new Date(+item.substring(0, 4), +item.substring(4, 6)-1, +item.substring(6, 8));
-  //});
-  //console.log(time);
-  //time.sort((a, b) => {
-  //  return (a > b ? 1 : -1);
-  //});
-
-  //console.log(time);
-
-  //const timeDomain = [];
- 
-  //for(let i = 0; i < time.length; i++) {
-  //  timeDomain.push(difference(beginTime, time[i]) <= 0 || difference(beginTime, time[i]));
-  //  console.log(difference(beginTime, time[i]));
-  //}
 
 
-
-  //const color = d3.scaleLinear().range(['white', 'red']).domain([Math.min(...heatData), Math.max(...heatData)])
+  
   const svgWidth = margin.left + margin.right + contentWidth;
   const svgHeight = margin.top + margin.bottom + contentHeight;
   const scale = d3.scaleBand().range([0, contentWidth/ 1.5]).domain(d3.range(heatData.length));
   const campaignScale = d3.scaleLinear().domain([0, difference(beginTime, endTime)]).range([150, 550]);
-  //let idx = 0;
+
     return (
       
       <div>
 
 
-        <div className="hamburger" >
+        <div className="hamburger "  >
           <input type="checkbox" id={classes.hamburger_check} className={classes.hamburger_hidden}></input>
           <label for={classes.hamburger_check} className={classes.menu_Bt}>
             <span></span>
@@ -197,8 +178,8 @@ function App() {
                 <div className="content">
                   <p className="content">日付：{detail["date"]}</p>
                   <p className="content">分類：{detail["group"]}</p>
-                  <p className="content">キャンペーン名：{detail["name"]}</p>
-                  <p className="content">キャンペーン内容：{detail["abstract"]}</p>
+                  <p className="content">施策名：{detail["name"]}</p>
+                  <p className="content">施策内容：{detail["abstract"]}</p>
                 </div>
               </div>
 
@@ -244,12 +225,16 @@ function App() {
                 );
               })}
             </g>
-     
+        <g>
+    
+        </g>
+        
         </svg>
       
         </div>
 
         <Tooltip toolref={toolref} abstract = {hoverInfo}/> 
+        
       </div>
     );
   }
