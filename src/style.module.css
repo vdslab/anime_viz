@@ -1,3 +1,7 @@
+.graphBody {
+  margin-top: header;
+}
+
 .hamburger_hidden {
   display: none;
 }
