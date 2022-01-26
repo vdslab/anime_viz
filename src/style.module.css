@@ -15,7 +15,7 @@
   display: flex;
   width: 30%;
   height: 100%;
-  position: fixed;
+  position: absolute;
   top: 1;
   left: 70%;
   z-index: 0;
@@ -26,12 +26,11 @@
 
     .menu_Bt {
         display: flex;
-        height: 60px;
         width: 60px;
         justify-content: center;
         align-items: center;
         position: relative;
-        top: 0%;
+        top: -30px;
         left: 86%;
         z-index: 100;
         cursor: pointer;
@@ -45,7 +44,7 @@
     height: 3px;
     width: 25px;
     border-radius: 3px;
-    background: #000;
+    background: #fff;
     transition: 0.5s;
     position: absolute;
   }
@@ -63,7 +62,7 @@
     width: 40%;
     height: 100%;
     position: fixed;
-    top: 1;
+    top: 0;
     left: 100%;
     z-index: 0;
     background: #fff;
