@@ -165,9 +165,6 @@ function App() {
   //let idx = 0;
   return (
     <div>
-      <div className="header">
-        <h1>Anime viz</h1>
-      </div>
       
       <div className="hamburger">
         <input
@@ -221,6 +218,9 @@ function App() {
             </div>
           </section>
         </nav>
+      </div>
+      <div className="header">
+        <h1>Anime viz</h1>
       </div>
       <div className="graph">
         <div className={classes.graphs}>
@@ -285,12 +285,12 @@ function App() {
             上から、直近のフォロワー数が多い作品順に並んでいます。
             <br />
             黒丸はSNS施策、星印はアニメの放送開始日を表しています。
-            PCの場合、黒丸の上にマウスを置くと施策のを見ることが出来ます。
+            PCの場合、黒丸の上にマウスを置くと施策のタイトルを見ることが出来ます。
             <br />
             <br />
             <strong>詳細絞り込みについて</strong>
             <br />
-            PCの場合は画面右部分、スマートフォンの場合はハンバーガーメニューを開いて、詳細絞り込みをすることができます。
+            PCの場合は画面右部分、スマートフォンの場合は右上からメニューを開いて、詳細絞り込みをすることができます。
             <br />
             チェックボックスにチェックを入れた分類の施策のみを絞り込んで見ることが出来ます。
             <br />

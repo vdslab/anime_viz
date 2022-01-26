@@ -30,7 +30,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        top: 10%;
+        top: 30px;
         left: 90%;
         z-index: 100;
         cursor: pointer;
@@ -44,7 +44,7 @@
     height: 3px;
     width: 25px;
     border-radius: 3px;
-    background: #000;
+    background: #fff;
     transition: 0.5s;
     position: absolute;
   }
@@ -71,6 +71,18 @@
 
   #hamburger_check:checked ~ .contents {
     left: 60%;
+  }
+
+  #hamburger_check:checked ~ .menu_Bt span {
+      background: #000;
+  }
+
+  #hamburger_check:checked ~ .menu_Bt span::before {
+      background: #000;
+  }
+
+  #hamburger_check:checked ~ .menu_Bt span::after {
+      background: #000;
   }
 
   .graphs {
