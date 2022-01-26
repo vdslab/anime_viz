@@ -202,16 +202,18 @@ function App() {
             })}
 
             <div className="content">
-              <h1 className="title is-3">詳細</h1>
+              <div className="detail">
+                <h1 className="title is-3">詳細</h1>
 
-              <div className="content">
-                <p className="content">日付：{detail["date"]}</p>
-                <p className="content">分類：{detail["group"]}</p>
-                <p className="content">施策名：{detail["name"]}</p>
-                <p className="content">施策内容：{detail["abstract"]}</p>
-                <br />
-                <br />
-                <br />
+                <div className="content">
+                  <p className="content">日付：{detail["date"]}</p>
+                  <p className="content">分類：{detail["group"]}</p>
+                  <p className="content">施策名：{detail["name"]}</p>
+                  <p className="content">施策内容：{detail["abstract"]}</p>
+                  <br />
+                  <br />
+                  <br />
+                </div>
               </div>
 
               <p></p>
@@ -261,8 +263,6 @@ function App() {
               showTooltip={showTooltip}
               hideTooltip={hideTooltip}
             />
-            
-
 
             <CampaignPoint
               campaignData={campaignData}
@@ -273,11 +273,7 @@ function App() {
               hideTooltip={hideTooltip}
               setHoverInfo={setHoverInfo}
             />
-            <Star
-              campaignData={campaignData}
-              campaignScale={campaignScale}            
-            />
-
+            <Star campaignData={campaignData} campaignScale={campaignScale} />
 
             <g>
               {data.map((item, i) => {
